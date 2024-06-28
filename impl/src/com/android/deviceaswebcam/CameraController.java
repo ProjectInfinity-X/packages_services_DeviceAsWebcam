@@ -364,7 +364,9 @@ public class CameraController {
         mCameraManager.registerAvailabilityCallback(
                 mCameraCallbacksExecutor, mCameraAvailabilityCallbacks);
         mUserPrefs = new UserPrefs(mContext);
-        mHighQualityModeEnabled = mUserPrefs.fetchHighQualityModeEnabled(/*defaultValue*/ false);
+        mHighQualityModeEnabled =
+                mUserPrefs.fetchHighQualityModeEnabled(
+                        mContext.getResources().getBoolean(R.bool.config_HighQualityVideoDefault));
         mRroCameraInfo = createVendorCameraPrefs(mHighQualityModeEnabled);
         refreshAvailableCameraIdList();
         refreshLensFacingCameraIds();
