@@ -685,7 +685,8 @@ public class CameraController {
         }
         synchronized (mSerializationLock) {
             boolean disableVideoEncodeFlag =
-                    SystemProperties.getBoolean("ro.usb.uvc.disable_video_encode_flag", false);
+                    SystemProperties.getBoolean("ro.usb.uvc.disable_video_encode_flag", false) ||
+                    !mContext.getResources().getBoolean(R.bool.config_HardwareVideoEncode);
             long usage = HardwareBuffer.USAGE_CPU_READ_OFTEN;
             if (!disableVideoEncodeFlag) {
                 usage |= HardwareBuffer.USAGE_VIDEO_ENCODE;
